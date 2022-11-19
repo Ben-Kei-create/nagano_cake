@@ -1,0 +1,26 @@
+<h2 class="mt-3">商品新規登録</h2>
+
+<%= form_with model: item do |f| %>
+
+
+    <label for="inputImage">商品画像</label><br>
+    <%= f.file_field :profile_image, placeholder: "選択されていません", accept: "image/*" %>
+
+    商品名<br>
+    <%= f.text_field :name, value: @name %><br>
+
+    商品説明<br>
+    <%= f.text_area :introduction, value: @introduction %><br/>
+
+    ジャンル　　選択してください。
+    <%= f.text_field :genre_id %>
+
+    税抜価格
+    <%= f.text_field :price %>円
+
+    販売ステータス　販売中　販売停止中
+    <%= f.text_field :is_active %>
+
+      <input type="submit" placeholder="Google で検索または URL を入力" value="新規登録" class="btn btn-success">
+
+ <% end %>
