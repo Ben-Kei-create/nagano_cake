@@ -10,7 +10,6 @@ devise_for :customers,skip: [:passwords], controllers: {
 # URL /admin/sign_in ...
 devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
-
 }
 
  scope module: :public do
@@ -18,6 +17,14 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
  root to:"homes#top"
  resources :items, only: [:index, :show]
  end
+
+ namespace :admin do
+ resources :items, only: [:index, :new, :create, :show]
+ post 'items/new' => 'items#create'
+ resources :customers, only: [:index, :show]
+ get'homes/admin' => 'homes#top'
+ end
+
 
 end
 

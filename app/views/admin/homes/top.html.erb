@@ -1,0 +1,54 @@
+<div class="col-md-8 offset-md-1 mt-4">
+<h2>注文履歴一覧</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col" colspan="1">購入日時</th>
+      <th scope="col">購入者</th>
+      <th scope="col">注文個数</th>
+      <th scope="col">注文ステータス</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @items.each do |t| %>
+    <tr>
+
+    <td>
+    <%= t.id %>
+    </td>
+
+    <td>
+    <%= t.name %>
+    </td>
+
+    <td>
+    <%= t.price %>
+    </td>
+
+
+    <td><%= link_to user_path(t.user.id) do %>
+    <%= image_tag b.user.get_profile_image(100, 100) %>
+    <% end %>
+    </td>
+
+
+
+    <!--<td>-->
+    <!--%= link_to book_path(it.id) do %>-->
+    <!--%= t.title %>-->
+    <!--% end %>-->
+    <!--</td>-->
+
+
+
+    <!--<td>-->
+    <!--%= t.body %>-->
+    <!--</td>-->
+
+    <!--<td>-->
+    <!--%= t.body %>-->
+    <!--</td>-->
+
+    </tr>
+    <% end %>
