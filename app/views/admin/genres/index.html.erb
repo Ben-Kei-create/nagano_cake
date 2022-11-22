@@ -2,7 +2,7 @@
 <h4 class="row mt-4">
 ジャンル一覧・追加
 </h4>
-</div>
+
 
 <div class="row">
 <div class="mx-auto">
@@ -12,22 +12,24 @@
     <%= f.text_field :name %><br>
     </div>
    <%= f.submit "新規登録", class: "btn btn-success" %>
-
  <% end %>
+ </div>
+ </div>
+
 
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">ジャンル</th>
+      <th scope="col" colspan="2">ジャンル</th>
     </tr>
   </thead>
-
-
 <% @genres.each do |t| %>
-<tbody>
-    <td>
-    <%= t.name %>
-    </td>
+  <tbody>
+    <tr>
+      <td scope="row" colspan="1"><%= t.name %></td><br>
+      <td><%= link_to "編集する", edit_admin_genre_path(t.id), class: "btn btn-success" %></td><p>
+    </tr>
   </tbody>
 </table>
 <% end %>
+</div>

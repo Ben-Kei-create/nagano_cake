@@ -1,19 +1,25 @@
 <%= flash[:notice] %>
 <div class="container">
+
 <div class="row mt-4">
 <h4>商品詳細</h4>
 </div>
-<div class="row col-md-8 offset-md-1 mt-3">
-画像
+
+<div class="row mt-4">
+<div class="col-lg-8">
+<%= image_tag @item.get_profile_image(100,100), width: '80%', height: '80%' %><br>
 </div>
-<div>
-<!--%= image_tag: @profile_image.get_profile_image %>-->
-  <p>商品名：<%= @item.name %></p>
-  <p>商品説明：<%= @items.introduction %></p>
-  <p>ジャンル：<%= @items.genre_id %></p>
-  <p>ジャンル：<%= @items.praice %></p>
-  <p>投稿日：<%= @items.created_at.strftime('%Y/%m/%d') %></p>
+<div class="col-lg-3">
+<p>商品名：<%= @item.name %></p>
+<p>商品説明：<%= @item.introduction %></p>
+<p>ジャンル：<%= @item.genre_id %></p>
+<p>税込価格(税抜価格)：<%= @item.price %></p>
+<p>販売ステータス:<%= @item.is_active %>
+</div>
 </div>
 
-      <%= image_tag @items.user.get_profile_image(100,100) %><br>
-      <%= @items.user.name %>
+</div>
+
+<!--:is_active-->
+<!--<p>投稿日：%= @item.created_at.strftime('%Y/%m/%d') %></p>-->
+ <!--offset-md-1-->
