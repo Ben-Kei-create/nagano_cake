@@ -1,0 +1,33 @@
+<div class="container">
+<h4 class="row mt-4">
+ジャンル一覧・追加
+</h4>
+</div>
+
+<div class="row">
+<div class="mx-auto">
+<%= form_with model: Genre.new, url: admin_genres_path, method: :post do |f| %>
+    <label class="col-form-label">ジャンル名</label>
+    <div class="col-sm-2">
+    <%= f.text_field :name %><br>
+    </div>
+   <%= f.submit "新規登録", class: "btn btn-success" %>
+
+ <% end %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ジャンル</th>
+    </tr>
+  </thead>
+
+
+<% @genres.each do |t| %>
+<tbody>
+    <td>
+    <%= t.name %>
+    </td>
+  </tbody>
+</table>
+<% end %>

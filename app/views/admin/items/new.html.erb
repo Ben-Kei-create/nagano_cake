@@ -7,7 +7,7 @@
 <div class="form-group row">
 <div class="mx-auto">
 
-<%= form_with model: @item do |f| %>
+<%= form_with url: admin_items_path, method: :post, model: @item do |f| %>
     <label for="inputImage" class="col-sm-4 col-form-label">商品画像</label>
     <div class="col-sm-2">
     <%= f.file_field :profile_image, placeholder: "選択されていません", accept: "image/*" %><br>
@@ -15,22 +15,22 @@
 
     <label class="col-sm-2 col-form-label">商品名</label>
     <div class="col-sm-2">
-    <%= f.text_field :name, value: @name %><br>
+    <%= f.text_field :name, placeholder: "商品名"%><br>
     </div>
 
     <label class="col-sm-2 col-form-label">商品説明</label>
     <div class="col-sm-2">
-    <%= f.text_area :introduction, value: @introduction %><br>
+    <%= f.text_area :introduction, placeholder: "商品説明" %><br>
     </div>
 
     <label class="col-sm-2 col-form-label">ジャンル</label>
     <div class="col-sm-2">
-    <%= f.select :genre_id, [['--選択してください--', ''], ['ケーキ', '1'], ['プリン', '2'], ['焼き菓子', '3'],['キャンディ', '4']] %><br>
+    <%= f.collection_select :genre_id, Genre.all, :id, :name %><br>
     </div>
 
     <label for="inputImage" class="col-sm-2 col-form-label">税抜価格</label>
     <div class="col-sm-2">
-    <%= f.text_field :price, value: @tax %>円<br>
+    <%= f.text_field :price, placeholder: "000000" %>円<br>
     </div>
 
     <div class="販売ステータス">
@@ -40,8 +40,8 @@
       <%= f.radio_button :done, false %>
       <%= f.label :is_active, '販売停止中', value: false %>
     </div>
-
-    <input type="submit" value="新規登録" class="btn btn-success">
+    
+   <%= f.submit "新規登録", class: "btn btn-success" %>
 
  <% end %>
  </div>

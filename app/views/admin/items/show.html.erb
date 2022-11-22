@@ -3,99 +3,17 @@
 <div class="row mt-4">
 <h4>商品詳細</h4>
 </div>
-
-
 <div class="row col-md-8 offset-md-1 mt-3">
-
-
 画像
-
 </div>
-
-
-
-
 <div>
-  <%= image_tag XXX.get_image %>
-  <p>ショップ名：<%= XXX.shop_name %></p>
-  <p>説明：<%= XXX.caption %></p>
-  <p>投稿ユーザー画像：<%= image_tag 'sample-author1.jpg' %></p>
-  <p>ユーザーネーム：<%= XXX.user.name %></p>
-  <p>投稿日：<%= XXX.created_at.strftime('%Y/%m/%d') %></p>
+<!--%= image_tag: @profile_image.get_profile_image %>-->
+  <p>商品名：<%= @item.name %></p>
+  <p>商品説明：<%= @items.introduction %></p>
+  <p>ジャンル：<%= @items.genre_id %></p>
+  <p>ジャンル：<%= @items.praice %></p>
+  <p>投稿日：<%= @items.created_at.strftime('%Y/%m/%d') %></p>
 </div>
 
-
-
-<!--%= form_for model: @item do |f| %>-->
-<!--<div class="form-group row">-->
-<!--    %= f.label :メールアドレス, class: "col-sm-2 col-form-label" %>-->
-<!--    <div class="col-sm-10">-->
-<!--    %= f.email_field :email, autofocus: true, placeholder: "sample@example.com", autocomplete: "email" %>-->
-<!--    </div>-->
-<!--</div>-->
-
-<!--<div class="form-group row">-->
-<!--    %= f.label :パスワード, class: "col-sm-2 col-form-label" %>-->
-<!--    <div class="col-sm-10">-->
-<!--    %= f.password_field :password, autocomplete: "current-password" %>-->
-<!--    </div>-->
-<!--</div>-->
-
-<!--<div class="btn-wrapper col-10">-->
-<!--<div class="row">-->
-<!--%= link_to 'ログイン',new_customer_session_path, class: "btn btn-primary mb-3" %>-->
-<!--</div>-->
-<!--</div>-->
-<!--% end %>-->
-<!--</div>-->
-<!--%= render "admin/shared/links" %>-->
-
-
-
-<!--<div class="container px-5 px-sm-0">-->
-<!--<div class="row">-->
-
-<!--%= render 'user', book: @book, user: @user %>-->
-
-<!--<div class="col-md-8 offset-md-1 mt-3">-->
-<!--<h2>Books</h2>-->
-<!--<table class="table">-->
-<!--<thead>-->
-<!--<tr>-->
-<!--     <td colspan="1"></td>-->
-<!--     <td>Title</td>-->
-<!--     <td>Opinion</td>-->
-<!--</tr>-->
-<!--</thead>-->
-
-<!--<tbody>-->
-<!--% @books.each do |book| %>-->
-<!--<tr>-->
-<!--      <td>-->
-<!--      %= link_to user_path(book.user.id) do %>-->
-<!--      %= image_tag book.user.get_profile_image(100, 100) %>-->
-<!--      % end %>-->
-<!--      </td>-->
-
-<!--      <td>-->
-<!--      %= link_to book_path(book.id) do %>-->
-<!--      %= book.title %>-->
-<!--      % end %>-->
-<!--      </td>-->
-
-<!--      <td>-->
-<!--      %= book.body %>-->
-<!--      </td>-->
-<!--</tr>-->
-<!--% end %>-->
-
-<!--</tbody>-->
-<!--</table>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-
-
-  <!--%= link_to post_image_path(post_image.id) do %>-->
-  <!--  %= image_tag post_image.get_image %>-->
-  <!--% end %>-->
+      <%= image_tag @items.user.get_profile_image(100,100) %><br>
+      <%= @items.user.name %>
