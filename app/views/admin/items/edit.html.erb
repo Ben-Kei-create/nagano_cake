@@ -7,58 +7,43 @@
 <div class="form-group row">
 <div class="mx-auto">
 
-<%= form_with model: @item do |f| %>
+<%= form_with model: @item, url: admin_genre_path(@item.id), method: :patch do |f| %>
+
     <label for="inputImage" class="col-sm-4 col-form-label">商品画像</label>
     <div class="col-sm-2">
-    <%= f.file_field :profile_image, placeholder: "選択されていません", accept: "image/*" %><br>
+    <%= f.file_field :profile_image, accept: "image/*" %><br>
     </div>
+
 
     <label class="col-sm-2 col-form-label">商品名</label>
     <div class="col-sm-2">
-    <%= f.text_field :name, value: @name %><br>
+    <%= f.text_field :name %><br>
     </div>
 
     <label class="col-sm-2 col-form-label">商品説明</label>
     <div class="col-sm-2">
-    <%= f.text_area :introduction, value: @introduction %><br>
+    <%= f.text_area :introduction %><br>
     </div>
 
     <label class="col-sm-2 col-form-label">ジャンル</label>
     <div class="col-sm-2">
-    <%= f.select :genre_id, [['--選択してください--', ''], ['ケーキ', '1'], ['プリン', '2'], ['焼き菓子', '3'],['キャンディ', '4']] %><br>
+    <%= f.collection_select :genre_id, Genre.all, :id, :name %><br>
     </div>
 
-    <label for="inputImage" class="col-sm-2 col-form-label">税抜価格</label>
+    <label class="col-sm-2 col-form-label">税抜価格</label>
     <div class="col-sm-2">
-    <%= f.text_field :price, value: @tax %>円<br>
+    <%= f.text_field :price %>円<br>
     </div>
 
     <div class="販売ステータス">
       <%= f.label :販売ステータス %>
       <%= f.radio_button :done, true %>
-      <%= f.label :is_active, '販売中', value: true %>
+      <%= f.label :is_active, '販売中', value: '販売中' %>
       <%= f.radio_button :done, false %>
-      <%= f.label :is_active, '販売停止中', value: false %>
+      <%= f.label :is_active, '販売停止中', value: '販売停止中' %>
     </div>
 
-    <input type="submit" value="変更を保存" class="btn btn-success">
+    <%= f.submit '変更を保存', class: "btn btn-success" %>
 
  <% end %>
- </div>
-
-
-<!--<h2>タイトル</h2>-->
-<!--<p>%= @list.title %></p>-->
-
-<!--<h2>本文</h2>-->
-<!--<p>%= @list.body %></p>-->
-
-<!--<h2>画像</h2>-->
-<!--% if @list.image.attached? %>-->
-<!--  %= image_tag @list.image, size: "300x300" %>-->
-<!--% else %>-->
-<!--  %= image_tag 'no_image', size: "300x300" %>-->
-<!--% end %>-->
-
-<!--%= link_to "編集", edit_list_path(@list.id) %>-->
-<!--%= link_to "削除", destroy_list_path(@list.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>-->
+</div>

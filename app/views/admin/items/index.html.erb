@@ -1,5 +1,17 @@
+<div class="container">
+
+<div class="row">
 <div class="col-md-8 offset-md-1 mt-4">
 <h2>商品一覧</h2>
+<div class="col-md-3 mt-4">
+<%= link_to admin_items_path, class: 'nav-link' do %>
+<i class="fas fa-plus"></i>
+<% end %>
+</div>
+</div>
+</div>
+
+<div class="row">
 <table class="table">
   <thead>
     <tr>
@@ -8,8 +20,10 @@
       <th scope="col">税抜価格</th>
       <th scope="col">ジャンル</th>
       <th scope="col">ステータス</th>
+      <th scope="col" colspan="1"></th>
     </tr>
   </thead>
+</div>
 
   <tbody>
   <% @items.each do |t| %>
@@ -20,36 +34,25 @@
     </td>
 
     <td>
-    <%= t.name %>
+　　<%= link_to t.name, admin_item_path(t) %>
     </td>
 
     <td>
     <%= t.price %>
     </td>
 
-
-    <td><%= link_to user_path(t.user.id) do %>
-    <%= image_tag b.user.get_profile_image(100, 100) %>
-    <% end %>
-    </td>
-
-
-
     <td>
-    <%= link_to book_path(it.id) do %>
-    <%= t.title %>
-    <% end %>
-    </td>
-
-
-
-    <td>
-    <%= t.body %>
+    <%= t.genre_id %>
     </td>
 
     <td>
-    <%= t.body %>
+    <p><%= t.is_active %>
     </td>
 
-    </tr>
+    <td>
+    <%= t.genre.id %>
+    </td>
+
     <% end %>
+</div>
+</div>

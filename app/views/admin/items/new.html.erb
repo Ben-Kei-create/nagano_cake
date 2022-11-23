@@ -36,9 +36,9 @@
     <div class="販売ステータス">
       <%= f.label :販売ステータス %>
       <%= f.radio_button :done, true %>
-      <%= f.label :is_active, '販売中', value: true %>
+      <%= f.label :is_active, '販売中', value: '販売中' %>
       <%= f.radio_button :done, false %>
-      <%= f.label :is_active, '販売停止中', value: false %>
+      <%= f.label :is_active, '販売停止中', value: '販売停止中' %>
     </div>
 
    <%= f.submit "新規登録", class: "btn btn-success" %>
