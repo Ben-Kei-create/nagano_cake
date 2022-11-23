@@ -3,6 +3,10 @@ class Item < ApplicationRecord
   has_many :cart_items, dependent: :destroy
   belongs_to :genre
   has_one_attached :profile_image
+  ## 消費税を求めるメソッド
+def with_tax_price
+    (price * 1.1).floor
+end
 
   def get_profile_image(width, height)
     unless profile_image.attached?

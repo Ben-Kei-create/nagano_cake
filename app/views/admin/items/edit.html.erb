@@ -1,49 +1,46 @@
+<%= flash[:notice] %>
+
 <div class="container">
-<h4 class="row mt-4">
-商品編集
-</h4>
-</div>
-
-<div class="form-group row">
-<div class="mx-auto">
-
+<div class="row mt-4">
+<h4>商品編集</h4>
 <%= form_with model: @item, url: admin_genre_path(@item.id), method: :patch do |f| %>
-
-    <label for="inputImage" class="col-sm-4 col-form-label">商品画像</label>
-    <div class="col-sm-2">
-    <%= f.file_field :profile_image, accept: "image/*" %><br>
-    </div>
-
-
-    <label class="col-sm-2 col-form-label">商品名</label>
-    <div class="col-sm-2">
-    <%= f.text_field :name %><br>
-    </div>
-
-    <label class="col-sm-2 col-form-label">商品説明</label>
-    <div class="col-sm-2">
-    <%= f.text_area :introduction %><br>
-    </div>
-
-    <label class="col-sm-2 col-form-label">ジャンル</label>
-    <div class="col-sm-2">
-    <%= f.collection_select :genre_id, Genre.all, :id, :name %><br>
-    </div>
-
-    <label class="col-sm-2 col-form-label">税抜価格</label>
-    <div class="col-sm-2">
-    <%= f.text_field :price %>円<br>
-    </div>
-
-    <div class="販売ステータス">
-      <%= f.label :販売ステータス %>
+<table class="table table-borderless">
+  <thead>
+    <tr>
+      <th><label for="inputImage" class="col-form-label mt-4">商品画像</label></th>
+      <th><%= f.file_field :profile_image, accept: "image/*" %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">商品名</th>
+      <td><%= f.text_field :name %></td>
+    </tr>
+    <tr>
+      <th scope="row">商品説明</th>
+      <td><%= f.text_area :introduction %></td>
+    </tr>
+    <tr>
+      <th scope="row">ジャンル</th>
+      <td><%= f.collection_select :genre_id, Genre.all, :id, :name %></td>
+    </tr>
+    <tr>
+      <th scope="row">税抜価格</th>
+      <td><%= f.text_field :price %>円</td>
+    </tr>
+    <tr>
+      <th scope="row"><%= f.label :販売ステータス %></th>
+      <td>
       <%= f.radio_button :done, true %>
       <%= f.label :is_active, '販売中', value: '販売中' %>
       <%= f.radio_button :done, false %>
       <%= f.label :is_active, '販売停止中', value: '販売停止中' %>
-    </div>
-
+      </td>
+    </tr>
+  </tbody>
+</table>
     <%= f.submit '変更を保存', class: "btn btn-success" %>
 
- <% end %>
 </div>
+</div>
+ <% end %>

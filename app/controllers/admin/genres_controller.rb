@@ -31,4 +31,10 @@ class Admin::GenresController < ApplicationController
   def genre_params
     params.require(:genre).permit(:name)
   end
-  end
+
+  # def item_params
+  #   params.require(:item).permit(:profile_image, :name, :introduction, :genre_id, :price, :is_active)
+  # end
+
+end
+

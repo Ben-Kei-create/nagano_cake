@@ -1,13 +1,17 @@
 <div class="container">
 <div class="row mt-4">
-<h2>商品一覧(全○○件)</h2>
+<h2>商品一覧（全○件）
+<!--%= current_customer.@items.where('created_at > ?', Date.today).count %>-->
+</h2>
 </div>
 
 <div class="row mt-4">
   <% @items.each do |t| %>
         <div class="col-md-3">
           <div class="card mb-4 shadow-sm">
-<%= image_tag t.get_profile_image(100,100), width: '100%', height: '80%' %><br>
+           <%= link_to item_path(t) do %>
+　　　　　　<%= image_tag t.get_profile_image(100,100), width: '100%', height: '80%' %><br>
+　　　　　　<% end %>
             <div class="card-body">
             商品名<%= t.name %><p>
             ￥<%= t.price %>
@@ -17,3 +21,5 @@
       <% end %>
     </div>
   </div>
+
+  <!--%= paginate profile_image %>-->
