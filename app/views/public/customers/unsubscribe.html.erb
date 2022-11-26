@@ -10,11 +10,18 @@
 退会する場合は、「退会する」をクリックしてください。<br>
 </p>
 
+<div class="row mx-4">
+<div class="col">
+<%= link_to customers_information_path, class: 'nav-link' do %>
 <button type="button" class="btn btn-danger">退会する</button>
-
+<% end %>
+</div>
+<div class="col">
+<%= link_to customers_information_path, class: 'nav-link' do %>
 <button type="button" class="btn btn-primary">退会しない</button>
-
-
+<% end %>
+</div>
+</div>
 
 </div>
 </div>

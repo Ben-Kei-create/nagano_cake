@@ -14,6 +14,12 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
  root to:"homes#top"
  resources :items, only: [:index, :show]
  resources :cart_items, only: [:index]
+ resources :orders, only: [:new, :index, :show, :create]
+ resources :customers, only: [:edit, :update]
+ get 'orders/complete' => 'orders#complete'
+ post 'orders/confirm' => 'orders#confirm'
+ get 'customers/unsubscribe' => 'customers#unsubscribe'
+ get 'customers/information' => 'customers#show'
  end
 
  namespace :admin do

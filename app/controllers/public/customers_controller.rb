@@ -1,2 +1,13 @@
 class Public::CustomersController < ApplicationController
-end
+ def unsubscribe
+ end
+
+ def information
+ end
+
+ def show
+  @customer = Customer.find(params[:id])
+ end
+
+ end
+

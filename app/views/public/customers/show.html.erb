@@ -9,39 +9,53 @@
 <div class="form-group row">
 <div class="mx-auto">
 
-<%= form_with model: @customer do |f| %>
+<%= form_with model: @ do |f| %>
 
 <h2>会員ID</h2>
-<p><%= @customer.id %></p>
+<p><%= f.id %></p>
 
 <h2>氏名</h2>
-<p><%= @customer.last_name %></p>
-<p><%= @customer.first_name %></p>
+<p><%= f.last_name %></p>
+<p><%= f.first_name %></p>
 
 <h2>フリガナ</h2>
-<p><%= @customer.name_kana %></p>
-<p><%= @customer.name_kana %></p>
+<p><%= f.name_kana %></p>
+<p><%= f.name_kana %></p>
 
 
 <h2>郵便番号</h2>
-<p><%= @customer.encrypted_password %></p>
+<p><%= f.encrypted_password %></p>
 
 <h2>住所</h2>
-<p><%= @customer.address %></p>
+<p><%= f.address %></p>
 
 <h2>電話番号</h2>
-<p><%= @customer.telephone_number %></p>
+<p><%= f.telephone_number %></p>
 
 <h2>メールアドレス</h2>
-<p><%= @customer.email %></p>
+<p><%= f.email %></p>
 
 <h2>会員ステータス</h2>
-<p><%= @customer.is_deleted %></p>
+<p><%= f.is_deleted %></p>
 
-編集する
+<div class="row mx-4">
+<div class="col">編集する
+<%= link_to customers_information_path, class: 'nav-link' do %>
+<button type="button" class="btn btn-danger">一覧をみる</button>
+<% end %>
+</div>
 
-注文履歴一覧をみる
+<div class="col">注文履歴
+<%= link_to customers_information_path, class: 'nav-link' do %>
+<button type="button" class="btn btn-primary">一覧をみる</button>
+<% end %>
+</div>
+</div>
 
 
-配送先
-注文履歴
+
+
+
+
+
+
