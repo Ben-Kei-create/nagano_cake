@@ -1,51 +1,42 @@
-<div class="col-md-8 offset-md-1 mt-4">
-<h2>会員一覧</h2>
+<div class="container">
+<div class="row">
+<h4 class="bg-light mt-4">
+<strong>会員一覧</strong></h4>
+</div>
+
 <table class="table">
-  <thead>
+  <thead class="thead-light">
     <tr>
-      <th scope="col" colspan="1">会員ID</th>
+      <th scope="col">会員ID</th>
       <th scope="col">氏名</th>
       <th scope="col">メールアドレス</th>
       <th scope="col">ステータス</th>
     </tr>
   </thead>
-
   <tbody>
-  <% @items.each do |t| %>
+  <% @customers.each do |c| %>
     <tr>
-
     <td>
-    <%= t.id %>
+    <%= c.id %>
     </td>
-
     <td>
-    <%= t.name %>
-    </td>
-
-    <td>
-    <%= t.price %>
-    </td>
-
-    <td><%= link_to user_path(t.user.id) do %>
-    <%= image_tag b.user.get_profile_image(100, 100) %>
+    <%= link_to t.name, admin_customer_path(t) do %>
+    <%= t.last_name %><%= t.first_name %>
     <% end %>
     </td>
-    </tr>
-<% end %>
+    <td>
+    <%= c.email %>
+    </td>
+    <td>
+    <% if t.is_deleted=="false" %>
+    <p class="text-secondary"><strong>退会</strong></p>
+    <% else %>
+    <p class="text-success"><strong>有効</strong></p>
+    <% end %>
+    </td>
+  <% end %>
+</table>
 
-    <!--<td>-->
-    <!--%= link_to book_path(it.id) do %>-->
-    <!--%= t.title %>-->
-    <!--% end %>-->
-    <!--</td>-->
-
-
-
-    <!--<td>-->
-    <!--%= t.body %>-->
-    <!--</td>-->
-
-    <!--<td>-->
-    <!--%= t.body %>-->
-    <!--</td>-->
-
+<div class="row">
+<%= paginate @customers %>
+</div>

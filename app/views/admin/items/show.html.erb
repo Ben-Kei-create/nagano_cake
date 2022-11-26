@@ -1,23 +1,46 @@
 <%= flash[:notice] %>
 <div class="container">
 
-<div class="row mt-4">
-<h4>商品詳細</h4>
-</div>
+<h4 class="row mt-4 bg-light">
+<strong>商品詳細</strong>
+</h4>
 
 <div class="row mt-4">
-<div class="col-lg-9">
-<%= image_tag @item.get_profile_image(100,100), width: '80%', height: '80%' %><br>
+<div class="col-lg-6">
+<%= image_tag @item.get_profile_image(100,100), width: '80%', height: '80%' %>
 </div>
 
-<div class="col-lg-3">
-<p>商品名：<%= @item.name %></p>
-<p>商品説明：<%= @item.introduction %></p>
-<p>ジャンル：<%= @item.genre_id %></p>
-<p>税込価格(税抜価格)：<%= @item.price %></p>
-<p>販売ステータス:<%= @item.is_active?%>
-</div>
-</div>
+<div class="col-lg-6">
+
+
+<table class="table table-borderless">
+    <tr>
+      <th scope="col">商品名</th>
+      <th scope="col"><%= @item.name %></th>
+    </tr>
+    <tr>
+      <th scope="col">商品説明</th>
+      <th scope="col"><%= @item.introduction %></th>
+    </tr>
+    <tr>
+      <th scope="col">ジャンル</th>
+      <th scope="col"><%= @item.genre_id %></th>
+    </tr>
+    <tr>
+      <th scope="col">税込価格(税抜価格)</th>
+      <th scope="col"><%= @item.price %></th>
+    </tr>
+    <tr>
+      <th scope="col">販売ステータス</th>
+      <th scope="col">
+      <% if @item.is_active=="false" %>
+      <p class="text-secondary"><strong>販売停止中</strong></p>
+      <% else %>
+      <p class="text-success"><strong>販売中</strong></p>
+      <% end %>
+      </th>
+    </tr>
+</table>
 
 <div class="row mt-4">
 <%= form_with model: @item, method: :edit do |t| %>
@@ -25,7 +48,3 @@
 <% end %>
 </div>
 </div>
-
-<!--:is_active-->
-<!--<p>投稿日：%= @item.created_at.strftime('%Y/%m/%d') %></p>-->
- <!--offset-md-1-->

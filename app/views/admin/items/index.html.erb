@@ -1,9 +1,7 @@
 <div class="container">
-
 <div class="row">
-
-<div class="col-md-8 offset-md-1 mt-4">
-<h1><strong>商品一覧</strong></h>
+<h4 class="col-md-8 offset-md-1 mt-4 bg-light">
+<strong>商品一覧</strong></h4>
 </div>
 
 <div class="col-md-3 mt-4">
@@ -50,12 +48,15 @@
 
     <td>
     <% if t.is_active=="false" %>
-    販売停止中
+    <p class="text-secondary"><strong>販売停止中</strong></p>
     <% else %>
-    販売中
+    <p class="text-success"><strong>販売中</strong></p>
     <% end %>
     </td>
     <% end %>
-    <!--if文章-->
+    </table>
 </div>
+
+<div class="row">
+<%= paginate @items %>
 </div>

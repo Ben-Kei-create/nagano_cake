@@ -1,8 +1,14 @@
 <div class="container mt-3">
 
+
+
+<dov class="row justify-content-center">
+<%= image_tag 'about_image.jpg', width: '50%', height: '50%'  %>
+
+
 <div class="row">
 <div class="col-md-8">
-<p class="border rounded border-dark">
+<p class="border rounded border-dark mt-5">
 ようこそ、ながのCAKEへ！<br>
 このサイトは、ケーキ販売のECサイトになります。<br>
 会員でない方も商品の閲覧はできますが、<br>
@@ -11,14 +17,15 @@
 </div>
 </div>
 
-<div class="row">
-<h1><strong>新着商品</strong></h1>
-</div>
+
 
 <div class="row">
 <div class="container">
 <div class="row">
 <!--%= current_customer.@items.where('created_at > ?', Date.today).count %>-->
+</div>
+<div class="row mt-4">
+<h1><strong>新着商品</strong></h1>
 </div>
 
 <div class="row mt-4">
@@ -38,6 +45,8 @@
     </div>
   </div>
 </div>
-<%= link_to "全ての商品をみる", admin_items_path %>
+<div class="mx-5">
+<%= link_to "全ての商品をみる＞", items_path %>
+</div>
 </div>
 
