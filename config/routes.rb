@@ -20,13 +20,14 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
  post 'orders/confirm' => 'orders#confirm'
  get 'customers/unsubscribe' => 'customers#unsubscribe'
  get 'customers/information' => 'customers#show'
+ post 'customers/information' => 'customers#new'
  end
 
  namespace :admin do
  resources :items, only: [:index, :new, :create, :show, :edit, :update]
  post 'items' => 'items#create'
  patch 'items/:id' => 'items#update'
- resources :customers, only: [:index, :show]
+ resources :customers, only: [:index, :show, :edit]
  get'homes/admin' => 'homes#top'
  resources :genres, only: [:index, :create, :edit, :update]
  end

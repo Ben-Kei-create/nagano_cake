@@ -1,47 +1,101 @@
 <div class="container">
-<h4 class="row mt-4">
-○○さんの、会員情報編集
+<h4 class="row mt-4 bg-light">
+<% form_with model: @customer, url: admin_customer_path, method: :edit do |f| %>
+<strong><%= f.last_name %><%= f.first_name %><h5>さんの</h5><h4><strong>会員情報編集</strong><h4>
 </h4>
-</div>
 
-<div class="form-group row">
-<div class="mx-auto">
-
-<%= form_with model: @item do |f| %>
-    <label for="inputImage" class="col-sm-4 col-form-label">商品画像</label>
-    <div class="col-sm-2">
-    <%= f.file_field :profile_image, placeholder: "選択されていません", accept: "image/*" %><br>
-    </div>
-
-    <label class="col-sm-2 col-form-label">商品名</label>
-    <div class="col-sm-2">
-    <%= f.text_field :name, value: @name %><br>
-    </div>
-
-    <label class="col-sm-2 col-form-label">商品説明</label>
-    <div class="col-sm-2">
-    <%= f.text_area :introduction, value: @introduction %><br>
-    </div>
-
-    <label class="col-sm-2 col-form-label">ジャンル</label>
-    <div class="col-sm-2">
-    <%= f.select :genre_id, [['--選択してください--', ''], ['ケーキ', '1'], ['プリン', '2'], ['焼き菓子', '3'],['キャンディ', '4']] %><br>
-    </div>
-
-    <label for="inputImage" class="col-sm-2 col-form-label">税抜価格</label>
-    <div class="col-sm-2">
-    <%= f.text_field :price, value: @tax %>円<br>
-    </div>
-
-    <div class="販売ステータス">
+<div class="row mt-4">
+<table class="table table-borderless">
+<%= render "public/shared/error_messages", resource: resource %>
+  <thead>
+    <tr>
+      <td>
+      会員ID
+      </td>
+      <td>
+      <%= f.id %>
+      </td>
+      <td colspan="1">
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+      氏名
+      </td>
+      <td>
+      <%= f.text_field :first_name, autocomplete: "first_name" %>
+      </td>
+      <td>
+      <%= f.text_field :last_name, autocomplete: "last_name" %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+    　フリガナ
+      </td>
+      <td>
+      <%= f.text_field :first_name_kana, autocomplete: "first_name_kana" %>
+      </td>
+      <td>
+      <%= f.text_field :last_name_kana, autocomplete: "last_name_kana" %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+    　郵便番号
+      </td>
+      <td>
+      <%= f.text_field :postal_code, autocomplete: "postal_code" %>
+      </td>
+      <td colspan="1">
+      </td>
+    </tr>
+    <tr>
+      <td>
+    　住所
+      </td>
+      <td>
+      <%= f.text_area :address, size: "20", autocomplete: "address" %>
+      </td>
+      <td colspan="1">
+      </td>
+    </tr>
+    <tr>
+      <td>
+      電話番号
+      </td>
+      <td>
+      <%= f.telephone_field :telephone_number %>
+      </td>
+      <td colspan="1">
+      </td>
+    </tr>
+    <tr>
+      <td>
+      メールアドレス
+      </td>
+      <td>
+      <%= f.text_field :postal_code, placeholder: "0000000", autocomplete: "postal_code" %>
+      </td>
+      <td colspan="1">
+      </td>
+    </tr>
+    <tr>
+      <td>
+      会員ステータス
+      </td>
+      <td>
+      <td class="販売ステータス">
       <%= f.label :販売ステータス %>
       <%= f.radio_button :done, true %>
-      <%= f.label :is_active, '販売中', value: true %>
+      <%= f.label :is_deleted, '有効', value: '有効' %>
       <%= f.radio_button :done, false %>
-      <%= f.label :is_active, '販売停止中', value: false %>
-    </div>
-
-    <input type="submit" value="新規登録" class="btn btn-success">
-
- <% end %>
- </div>
+      <%= f.label :is_deleted, '退会', value: '退会' %>
+      </td>
+    </tr>
+  </tbody>
+<%= f.submit "変更を保存", class: "btn btn-success" %>
+<% end %>
+</table>

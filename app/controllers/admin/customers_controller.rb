@@ -1,4 +1,12 @@
 class Admin::CustomersController < ApplicationController
+ # def new
+ #   @customer = Customer.new
+ # end
+
+ # def create
+ #   @customer = Customer.find(params[:id])
+ # end
+
  def index
    @items = Item.all
    @customers = Customer.all
