@@ -1,9 +1,8 @@
 <%= flash[:notice] %>
 
 <div class="container">
-<div class="row mt-4 bg-light">
-<h4>管理者ログイン</h4>
-</div>
+<h4 class="row mt-4 bg-light">
+管理者ログイン</h4>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 <div class="form-group row">
@@ -22,7 +21,7 @@
 
 <div class="btn-wrapper col-10">
 <div class="row">
-<%= link_to 'ログイン', new_customer_session_path, class: "btn btn-primary mb-3" %>
+<%= f.submit 'ログイン', class: "btn btn-primary mb-3" %>
 </div>
 </div>
 <% end %>

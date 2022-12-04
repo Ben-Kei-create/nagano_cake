@@ -25,10 +25,11 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
  namespace :admin do
  resources :items, only: [:index, :new, :create, :show, :edit, :update]
+ resources :customers, only: [:index, :show, :edit]
+ resources :genres, only: [:index, :create, :edit, :update]
+ resources :orders, only: [:show]
  post 'items' => 'items#create'
  patch 'items/:id' => 'items#update'
- resources :customers, only: [:index, :show, :edit]
- get'homes/admin' => 'homes#top'
- resources :genres, only: [:index, :create, :edit, :update]
+ get '/' => 'homes#top'
  end
 end

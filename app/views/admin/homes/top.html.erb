@@ -1,54 +1,32 @@
-<div class="col-md-8 offset-md-1 mt-4">
-<h2>注文履歴一覧</h2>
+<div class="container">
+<div class="row">
+<h4 class="col-md-8 offset-md-1 mt-4 bg-light">
+<strong>注文履歴一覧</strong></h4>
+</div>
 <table class="table">
   <thead>
     <tr>
-      <th scope="col" colspan="1">購入日時</th>
+      <th scope="col">購入日時</th>
       <th scope="col">購入者</th>
       <th scope="col">注文個数</th>
-      <th scope="col">注文ステータス</th>
+      <!--<th scope="col">注文ステータス</th>-->
     </tr>
   </thead>
-
   <tbody>
-  <% @items.each do |t| %>
+  <% @order_details.each do |o| %>
     <tr>
-
-    <td>
-    <%= t.id %>
-    </td>
-
-    <td>
-    <%= t.name %>
-    </td>
-
-    <td>
-    <%= t.price %>
-    </td>
-
-
-    <td><%= link_to user_path(t.user.id) do %>
-    <%= image_tag b.user.get_profile_image(100, 100) %>
-    <% end %>
-    </td>
-
-
-
-    <!--<td>-->
-    <!--%= link_to book_path(it.id) do %>-->
-    <!--%= t.title %>-->
-    <!--% end %>-->
-    <!--</td>-->
-
-
-
-    <!--<td>-->
-    <!--%= t.body %>-->
-    <!--</td>-->
-
-    <!--<td>-->
-    <!--%= t.body %>-->
-    <!--</td>-->
-
+     <td><%= link_to o.created_at, admin_order_path%></td>
+     <td><%= o.customer.name %></td>
+     <td><%= o.amount %></td>
+     <!--<td>%= if o.making_status=="false" %>-->
+     <!--<p class="text-secondary"><strong>販売停止中</strong></p>-->
+     <!--% else %>-->
+     <!--<p class="text-success"><strong>販売中</strong></p>-->
     </tr>
-    <% end %>
+</table>
+</div>
+<% end %>
+
+<div class="row">
+<%= paginate @order_details %>
+</div>
