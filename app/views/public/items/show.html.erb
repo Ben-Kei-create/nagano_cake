@@ -3,6 +3,7 @@
 
 <div class="row mt-4">
 <div class="col-lg-9">
+<%= form_with model: @item, method: :post do |t| %>
 <%= image_tag @item.get_profile_image(100,100), width: '80%', height: '80%' %><br>
 </div>
 
@@ -10,8 +11,8 @@
 <p><h1><%= @item.name %></h1></p>
 <p><h3><%= @item.introduction %></h3></p>
 <p><h3>￥<%= @item.price %></h3><h5>（税込）</h5></p>
-<%= form_with model: @item, method: :edit do |t| %>
-<td><%= link_to "カートに入れる", edit_admin_item_path, class: "btn btn-success" %></td><p>
+
+<td><%= t.submit "カートに入れる", class: "btn btn-success" %></td><p>
 <% end %>
 </div>
 </div>

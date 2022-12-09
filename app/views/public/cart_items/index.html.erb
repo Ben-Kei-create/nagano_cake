@@ -1,22 +1,6 @@
 <div class="container">
-<div class="row mt-4">
-<h3>ショッピングカート</h3>
-</div>
-
-<li class="list-none">
-    <%= form_with @cart_items do |ci| %>
-    <%= ci.item.name %>
-    <%= ci.product.price %>
-    <%= ci.hidden_field :product_id, value: cart_item.product.id %>
-    <%= f.number_field :quantity ,value: cart_item.quantity%>
-    <%= f.submit "更新", class: "" %>
-    <%= button_to "削除", delete_item_path(product_id: cart_item.product.id), method: :delete,
-                                       data: { confirm: "商品を削除しますか？" } %>
-         <td><%= f.item.with_tax_price%></td>
-          <td><%= f.subtotal%></td>
-          <td><%= f.subtotal%></td>
-</li>
-<% end %>
+<h3 class="row mt-4 bg-light">ショッピングカート</h3>
+<% link_to "カートを空にする", items_path, method: :destroy_all, class: ""%>
 
 
 <table class="table table-bordered">
@@ -26,18 +10,36 @@
       <th>単価（税込）</th>
       <th>数量</th>
       <th>小計</th>
-      <th scope="1"></th>
+      <th></th>
     </tr>
   </thead>
-<% @cart_items.each do |ci| %>
+<% @cart_items.each do |c| %>
   <tbody>
     <tr>
-      <th>商品名</th>
-      <th>単価（税込）</th>
-      <th>数量</th>
-      <th>小計</th>
-      <th colspan="1"></th>
+      <th><% c.item.name %></th>
+      <th><% c.item.price %></th>
+      <th><%= c.select :amount, [*1..10] %><% c.submit "変更", class: "btn btn-success"%></th>
+      <th></th>
+      <th><></th>
     </tr>
   </tbody>
 </table>
 <% end %>
+<%= link_to "買い物を続ける", root_path, class: 'btn btn-primary' %>
+
+
+<!--<li class="list-none">-->
+<!--    %= form_with model: @cart_items method: :patch do |ci| %>-->
+<!--    %= -->
+<!--    %= ci.product.price %>-->
+<!--    %= ci.hidden_field :product_id, value: cart_item.product.id %>-->
+<!--    %= ci.number_field :quantity ,value: cart_item.quantity%>-->
+
+<!--    %=link_to "削除", delete_item_path(product_id: cart_item.product.id), method: :delete,-->
+<!--!                                      data: { confirm: "商品を削除しますか？" } %>-->
+<!--         <td>%= ci.item.with_tax_price%></td>-->
+<!--          <td>%= ci.subtotal%></td>-->
+<!--          <td>%= ci.subtotal%></td>-->
+<!--%= ci.submit "更新", class: "" %>-->
+<!--</li>-->
+<!--% end %>-->

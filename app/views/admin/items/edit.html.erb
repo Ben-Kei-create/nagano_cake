@@ -3,7 +3,7 @@
 <div class="container">
 <h4 class="row mt-4 bg-light">
 <strong>商品編集</strong></h4>
-<%= form_with model: @item, url: admin_genre_path(@item.id), method: :patch do |f| %>
+<%= form_with model: @item, url: admin_item_path(@item.id), method: :patch do |f| %>
 <table class="table table-borderless">
   <thead>
     <tr>
@@ -29,12 +29,12 @@
       <td><%= f.text_field :price %>円</td>
     </tr>
     <tr>
-      <th scope="row"><%= f.label :販売ステータス %></th>
+      <th scope="row"><%= f.label "販売ステータス" %></th>
       <td>
-      <%= f.radio_button :done, true %>
-      <%= f.label :is_active, '販売中', value: '販売中' %>
-      <%= f.radio_button :done, false %>
-      <%= f.label :is_active, '販売停止中', value: '販売停止中' %>
+      <%= f.radio_button :is_active, true %>
+      <%= f.label :is_active, '販売中' %>
+      <%= f.radio_button :is_active, false %>
+      <%= f.label :is_active, '販売停止中' %>
       </td>
     </tr>
   </tbody>

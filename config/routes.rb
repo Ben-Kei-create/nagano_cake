@@ -13,14 +13,15 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
  get'homes/about' => 'homes#about', as: 'about'
  root to:"homes#top"
  resources :items, only: [:index, :show]
- resources :cart_items, only: [:index]
+ resources :cart_items, only: [:index, :destroy]
  resources :orders, only: [:new, :index, :show, :create]
- resources :customers, only: [:edit, :update]
+ resources :customers, only: [:edit, :update, :show]
  get 'orders/complete' => 'orders#complete'
  post 'orders/confirm' => 'orders#confirm'
  get 'customers/unsubscribe' => 'customers#unsubscribe'
  get 'customers/information' => 'customers#show'
  post 'customers/information' => 'customers#new'
+ delete '/cart_items/destroy_all' => 'cart_items#destroy_all'
  end
 
  namespace :admin do

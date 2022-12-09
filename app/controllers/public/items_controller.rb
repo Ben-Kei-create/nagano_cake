@@ -8,6 +8,7 @@ class Public::ItemsController < ApplicationController
    @post_image = PostImage.new
    @item = Item.find(params[:id])
    @items = Item.all
+   redirect_to cart_items_path
   end
 
 end

@@ -9,7 +9,7 @@
 <% end %>
 </h4>
 
-<%= form_with model: @ do |f| %>
+<%= form_with model: @customer do |f| %>
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -40,6 +40,7 @@
     </tr>
   </tbody>
 </table>
+<% end %>
 
 <h4 class="row mt-4">
 <strong>配送先</strong>

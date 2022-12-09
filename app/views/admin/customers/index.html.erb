@@ -20,15 +20,15 @@
     <%= c.id %>
     </td>
     <td>
-    <%= link_to t.name, admin_customer_path(t) do %>
-    <%= t.last_name %><%= t.first_name %>
+    <%= link_to admin_customer_path(c) do %>
+    <%= c.last_name %><%= c.first_name %>
     <% end %>
     </td>
     <td>
     <%= c.email %>
     </td>
     <td>
-    <% if t.is_deleted=="false" %>
+    <% if c.is_deleted=="false" %>
     <p class="text-secondary"><strong>退会</strong></p>
     <% else %>
     <p class="text-success"><strong>有効</strong></p>
