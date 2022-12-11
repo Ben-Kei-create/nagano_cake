@@ -5,7 +5,7 @@ scope module: :public do
  resources :items, only: [:index, :show]
  resources :cart_items, only: [:index, :destroy]
  resources :orders, only: [:new, :index, :show, :create]
- resources :addresses, only: [:new, :index, :show, :create, :update, :destroy]
+ resources :addresses, only: [:new, :index, :show, :create, :update, :destroy, :edit]
  resource :customers, only: [:edit, :update, :show]
  get 'orders/complete' => 'orders#complete'
  post 'orders/confirm' => 'orders#confirm'
