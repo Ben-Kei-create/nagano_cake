@@ -1,7 +1,9 @@
 <div class="container">
 <h4 class="row mt-4 bg-light">
 <% form_with model: @customer, url: admin_customer_path, method: :edit do |f| %>
-<strong><%= f.last_name %><%= f.first_name %><h5>さんの</h5><h4><strong>会員情報編集</strong><h4>
+<strong><strong>
+    <%= f.last_name %>
+    <%= @customer.first_name %>さんの会員詳細</strong><h5>さんの</h5><h4><strong>会員情報編集</strong><h4>
 </h4>
 
 <div class="row mt-4">

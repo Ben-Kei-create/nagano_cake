@@ -1,12 +1,11 @@
 <div class="container">
 <h4 class="row mt-4 bg-light">
-<% form_with model: @customer, url: admin_customer_path, method: :edit do |f| %>
-<strong><%= f.last_name %><%= f.first_name %><h5>さんの</h5><h4><strong>会員情報編集</strong><h4>
+<%= form_with model: @customer, url: customers_path, method: :patch do |f| %>
+<%= @customer.first_name %><%= @customer.last_name %>さんの会員情報編集
 </h4>
 
 <div class="row mt-4">
 <table class="table table-borderless">
-<%= render "public/shared/error_messages", resource: resource %>
     <tr>
       <td>
       氏名
@@ -20,7 +19,7 @@
     </tr>
     <tr>
       <td>
-    　フリガナ
+      フリガナ
       </td>
       <td>
       <%= f.text_field :first_name_kana, autocomplete: "first_name_kana" %>
@@ -31,7 +30,7 @@
     </tr>
     <tr>
       <td>
-    　郵便番号
+      郵便番号
       </td>
       <td>
       <%= f.text_field :postal_code, autocomplete: "postal_code" %>
@@ -41,7 +40,7 @@
     </tr>
     <tr>
       <td>
-    　住所
+      住所
       </td>
       <td>
       <%= f.text_area :address, size: "20", autocomplete: "address" %>
@@ -69,11 +68,18 @@
       <td colspan="1">
       </td>
     </tr>
-
-<%= link_to '編集内容を保存', new_customer_session_path, class: "btn btn-success" %>
+    </table>
+    </div>
+<div class="row">
+<div class="col-sm-2 mt-2">
+<%= f.submit '編集内容を保存', class: "btn btn-success"%>
 <% end %>
+</div>
+</div>
 
-<%= link_to '退会する', new_customer_session_path, class: "btn btn-success" %>
-<% end %>
-
-</table>
+<div class="row">
+<div class="col-sm-2 mt-2">
+<%= link_to '退会する', customers_unsubscribe_path, class: "btn btn-danger btn-block"%>
+</div>
+</div>
+</div>

@@ -17,4 +17,11 @@ class Admin::CustomersController < ApplicationController
    @customer = Customer.find(params[:id])
  end
 
+ def edit
+   @customer = Customer.find(params[:id])
+  unless @customer == current_customer
+    redirect_to customer_path(current_customer)
+  end
+  end
+
 end
