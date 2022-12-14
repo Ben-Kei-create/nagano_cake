@@ -17,13 +17,13 @@ scope module: :public do
  end
 
  namespace :admin do
+ root to:"homes#top"
  resources :items, only: [:index, :new, :create, :show, :edit, :update]
  resources :customers, only: [:index, :show, :edit]
  resources :genres, only: [:index, :create, :edit, :update]
  resources :orders, only: [:show]
  post 'items' => 'items#create'
  patch 'items/:id' => 'items#update'
- get '/' => 'homes#top'
  end
 
 devise_for :customers,skip: [:passwords], controllers: {

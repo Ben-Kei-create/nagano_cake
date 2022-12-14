@@ -2,7 +2,7 @@
 <h4 class="row mt-4 bg-light">
 <strong>商品新規登録</strong></h4>
 
-<%= form_with url: admin_items_path, method: :post, model: @item do |f| %>
+<%= form_with model: @item, url: admin_items_path, method: :post do |f| %>
  <table class="table table-borderless">
   <thead>
     <tr>

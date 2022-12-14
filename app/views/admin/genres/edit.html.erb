@@ -1,13 +1,12 @@
 <div class="container">
 <h4 class="row mt-4 bg-light">
-<strong>ジャンル編集</strong>
+ジャンル編集
 </h4>
 
+<%= form_with model: @genre, url: admin_genre_path(@genre.id), method: :patch do |f| %>
 <table class="table table-borderless">
-    <%= form_with model: @genre, url: admin_genre_path(@genre.id), method: :patch do |f| %>
     <tr>
-      <th>ジャンル名 <%= f.text_field :name %>　<%= f.submit "変更を保存", class: "btn btn-success" %></th>
-      <% end %>
-      </th>
+      <th>ジャンル名 <%= f.text_field :name %><%= f.submit "変更を保存", class: "btn btn-success" %></th>
     </tr>
 </table>
+<% end %>
