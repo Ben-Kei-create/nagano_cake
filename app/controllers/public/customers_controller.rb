@@ -5,12 +5,13 @@ class Public::CustomersController < ApplicationController
  end
 
  def show
-  @customer = Customer.find(current_customer.id)
+   @customer = Customer.find(current_customer.id)
  end
 
  def edit
-  @customer = current_customer
- end
+  @customer = Customer.find(current_customer.id)
+  unless @customer == current_customer
+  end end
 
   def update
    current_customer.update(customer_params)

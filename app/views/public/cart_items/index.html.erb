@@ -2,7 +2,6 @@
 <h3 class="row mt-4 bg-light">ショッピングカート</h3>
 <% link_to "カートを空にする", items_path, method: :destroy_all, class: ""%>
 
-
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -13,19 +12,25 @@
       <th></th>
     </tr>
   </thead>
-<% @cart_items.each do |c| %>
+<% @cart_items.each do |cart_item| %>
   <tbody>
     <tr>
-      <th><% c.item.name %></th>
-      <th><% c.item.price %></th>
-      <th><%= c.select :amount, [*1..10] %><% c.submit "変更", class: "btn btn-success"%></th>
-      <th></th>
-      <th><></th>
+      <th><% cart_item.item.name %></th>
+      <th><%= cart_item.item.with_tax_price%></th>
+      <th><%= cart_item.select :amount, [*1..10] %> <% cart_item.submit "変更", class: "btn btn-success"%><%= item.quantity %></th>
+      <th><%= cart_item.subtotal %></th>
+      <th><%= button_to '削除', item, method: :delete %></th>
     </tr>
   </tbody>
 </table>
-<% end %>
+<div class="row">
 <%= link_to "買い物を続ける", root_path, class: 'btn btn-primary' %>
+<% @total = @total+cart_item.subtotal %>
+<td>合計金額</td>
+<td>￥<%= @total %></td>
+<% @合計金額 +=  cart_item.subtotal %>
+</div>
+<% end %>
 
 
 <!--<li class="list-none">-->

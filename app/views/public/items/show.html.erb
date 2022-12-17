@@ -10,10 +10,11 @@
 <div class="col-md-2">
 <p><h1><%= @item.name %></h1></p>
 <p><h3><%= @item.introduction %></h3></p>
-<p><h3>￥<%= @item.price %></h3><h5>（税込）</h5></p>
+<p><h3>￥<%= @item.with_tax_price %></h3><h5>（税込）</h5></p>
 
 <td>
 
+<%= f.hidden_field :id, :value => "商品id" %>-->
 <%= f.select :amount, *[1..10] %>
 <%= t.submit "カートに入れる", class: "btn btn-success" %></td><p>
 <% end %>

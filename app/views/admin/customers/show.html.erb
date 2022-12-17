@@ -49,15 +49,25 @@
   </tbody>
 </table>
 
+
+
+
+<!--エラーが出ている-->
+
+
+
+
 <div class="row">
- <div class="col-sm-2">
-  <%= link_to customers_information_path, class: 'btn btn-success nav-link' do %>
-  編集する
+  <div class="col-sm-2">
+  <%= link_to edit_admin_customer_path(@customer.id) do %>
+  <button type="button" class="btn btn-primary btn-sm">編集する</button>
   <% end %>
-</div>
+  </div>
+
+<!--エラーが出ている-->
 
 <div class="col-sm-2">
-  <%= link_to customers_information_path, class: 'btn btn-info' do %>
+  <%= link_to admin_root_path, class: 'btn btn-info' do %>
   注文履歴一覧を見る
   <% end %>
 </div>
