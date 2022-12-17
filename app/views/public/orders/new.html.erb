@@ -1,5 +1,72 @@
 <div class="container">
+<h4 class="row mt-4 bg-light">
+注文情報入力</h4>
+
+<%= form_with model: @order, url: admin_items_path, method: :post do |f| %>
 <div class="row">
-<div class="col mt-4 mx-auto">
-注文情報入力画面(支払方法・配送先の選択)
-</div></div></div>
+支払い方法
+      <div class="支払い方法">
+      <%= f.label :支払い方法 %>
+      <%= f.radio_button :done, true %>
+      <%= f.label :is_active, 'クレジットカード', value: 'クレジットカード' %>
+      <%= f.radio_button :done, false %>
+      <%= f.label :is_active, '銀行振込', value: '銀行振込' %>
+      </div>
+</div>
+
+<div class="row">
+お届け先
+      <div class="お届け先">
+      <%= f.label :支払い方法 %>
+      <%= f.radio_button :done %>
+      <%= f.label :is_active, 'クレジットカード', value: 'クレジットカード' %>
+      <%= f.radio_button :done %>
+      <%= f.label :is_active, '銀行振込', value: '銀行振込' %>
+      <%= f.radio_button :done %>
+      <%= f.label :is_active, '銀行振込', value: '銀行振込' %>
+      </div>
+</div>
+
+<div class="row">
+お届け先
+</div>
+
+<%= form_with model: @item, url: admin_items_path, method: :post do |f| %>
+ <table class="table table-borderless">
+  <thead>
+    <tr>
+      <td>商品画像</td>
+      <td> <%= f.file_field :profile_image, placeholder: "選択されていません", accept: "image/*" %></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>商品名</td>
+      <td><%= f.text_field :name, placeholder: "商品名"%></td>
+    </tr>
+    <tr>
+      <td>商品説明</td>
+      <td><%= f.text_area :introduction, placeholder: "ここに説明文を記述します"%></td>
+    </tr>
+    <tr>
+      <td>ジャンル</td>
+      <td><%= f.collection_select :genre_id, Genre.all, :id, :name %></td>
+    </tr>
+    <tr>
+      <td>税抜価格</td>
+      <td><%= f.text_area :price, placeholder: "1000"%></td>
+    </tr>
+    <tr>
+      <td>販売ステータス</td>
+      <td><div class="販売ステータス">
+      <%= f.label :販売ステータス %>
+      <%= f.radio_button :done, true %>
+      <%= f.label :is_active, '販売中', value: '販売中' %>
+      <%= f.radio_button :done, false %>
+      <%= f.label :is_active, '販売停止中', value: '販売停止中' %></div></td>
+    </tr>
+  </tbody>
+</table>
+<%= f.submit '新規登録', class: "btn btn-success mb-3" %>
+<% end %>
+</div>

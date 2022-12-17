@@ -1,4 +1,9 @@
 class Public::OrdersController < ApplicationController
+ 
+ def new
+  @order = 
+ end
+ 
  def complete
 
  end

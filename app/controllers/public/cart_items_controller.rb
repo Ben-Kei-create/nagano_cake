@@ -14,13 +14,18 @@ class Public::CartItemsController < ApplicationController
  # end
 
  def create
+  Item.find_by(item_id)
+  if 
+   
+   
+  else
+   
   1. 追加した商品がカート内に存在するかの判別
     存在した場合
       2. カート内の個数をフォームから送られた個数分追加する
     存在しなかった場合
       カートモデルにレコードを新規作成する
  end
-
  def destroy_all
   current_customer.cart_items.destroy_all
   redirect_to cart_items_path
@@ -39,6 +44,5 @@ private
   def cart_item_params
       params.require(:cart_item).permit(:item_id, :amount)
   end
-
 
 end
