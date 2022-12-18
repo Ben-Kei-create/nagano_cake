@@ -4,11 +4,11 @@ class Public::ItemsController < ApplicationController
   @items = Item.all
  end
 
-  def show
+ def show
    @post_image = PostImage.new
    @item = Item.find(params[:id])
    @items = Item.all
-   redirect_to cart_items_path
-  end
+   @cart_item = CartItem.new
+ end
 
 end

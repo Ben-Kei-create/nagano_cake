@@ -2,4 +2,72 @@
 <div class="row">
 <div class="col mt-4 mx-auto">
 注文履歴詳細画面
-</div></div></div>
+</div></div>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>単価（税込）</th>
+      <th>数量</th>
+      <th>小計</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @cart_items.each do |cart_item| %>
+  <% @total += cart_item.subtotal %>
+    <tr>
+      <th><%= cart_item.item.name %></th>
+      <th><%= cart_item.item.with_tax_price%></th>
+      <th><%= cart_item.amount %></th>
+    </tr>
+    <th><%= cart_item.subtotal %></th>
+    <th><%= link_to '削除する', cart_item_path(cart_item), method: :delete %></th>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>送料</th>
+      <th>￥<% cart_item.shopping_cost %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>商品合計</th>
+      <th><% @total += cart_item.subtotal %><%= @total %></th>
+    </tr>
+    <tr>
+      <th>請求金額</th>
+      <th><% @total += cart_item.subtotal + cart_item.shopping_cost %><%= @total %></th>
+    </tr>
+  </tbody>
+</table>
+
+支払方法
+<%= params[:payment_method] %>
+
+お届け先
+
+if 〒<%= current_customer.addresses, :id, :name) %>
+else
+<% end %>
+
+登録済住所先から選択
+        <!--下はモデルを参照-->
+      <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display) %>
+
+お届け先
+郵便番号（ハイフンなし）<%= f.text_field :postal_code, placeholder: "0000000", autocomplete: "postal_code" %>
+住所<%= f.text_area :address, size: "20", placeholder: "東京都渋谷区代々木神園町0-0", autocomplete: "address" %>
+名前（姓）<%= f.text_field :first_name, autofocus: true, placeholder: "令和", autocomplete: "first_name" %>
+　　（名）<%= f.text_field :last_name, autofocus: true, placeholder: "道子", autocomplete: "last_name" %>
+
+<div class="row">
+<%= link_to "注文を確定する", orders_complete_path, class: 'btn btn-success' %>
+</div>
+</div>

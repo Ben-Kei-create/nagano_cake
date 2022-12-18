@@ -3,17 +3,16 @@ scope module: :public do
  get'homes/about' => 'homes#about', as: 'about'
  root to:"homes#top"
  resources :items, only: [:index, :show]
- resources :cart_items, only: [:index, :destroy]
+ resources :cart_items, only: [:index, :destroy, :create, :update]
  resources :orders, only: [:new, :index, :show, :create]
  resources :addresses, only: [:new, :index, :show, :create, :update, :destroy, :edit]
  resource :customers, only: [:edit, :update, :show]
  get 'orders/complete' => 'orders#complete'
- post 'orders/confirm' => 'orders#confirm'
  get 'customers/unsubscribe' => 'customers#unsubscribe'
  get 'customers/information' => 'customers#show'
+ post 'orders/confirm' => 'orders#confirm'
  post 'customers/information' => 'customers#new'
- delete '/cart_items/destroy_all' => 'cart_items#destroy_all'
- post 'addresses' => 'addresses#create'
+ delete '/cart_items/destroy_all' => 'cart_items#destroy_all', as: 'cart_items_destroy_all'
  end
 
  namespace :admin do
