@@ -2,7 +2,7 @@
 <div class="row">
 <div class="col mt-4 mx-auto">
 注文履歴詳細画面
-</div></div>
+</div>
 
 <table class="table table-bordered">
   <thead>
@@ -47,25 +47,21 @@
     </tr>
   </tbody>
 </table>
+</div>
 
 支払方法
 <%= params[:payment_method] %>
 
 お届け先
-
-if 〒<%= current_customer.addresses, :id, :name) %>
-else
-<% end %>
+〒<%= current_customer.addresses, :id, :name) %>
 
 登録済住所先から選択
-        <!--下はモデルを参照-->
-      <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display) %>
+〒<%= current_customer.addresses %>
 
 お届け先
-郵便番号（ハイフンなし）<%= f.text_field :postal_code, placeholder: "0000000", autocomplete: "postal_code" %>
-住所<%= f.text_area :address, size: "20", placeholder: "東京都渋谷区代々木神園町0-0", autocomplete: "address" %>
-名前（姓）<%= f.text_field :first_name, autofocus: true, placeholder: "令和", autocomplete: "first_name" %>
-　　（名）<%= f.text_field :last_name, autofocus: true, placeholder: "道子", autocomplete: "last_name" %>
+郵便番号（ハイフンなし）<%= current_customer.postal_code %>
+住所<%= current_customer.address %>
+名前（姓）<%= current_customer.first_name + current_customer.last_name %>
 
 <div class="row">
 <%= link_to "注文を確定する", orders_complete_path, class: 'btn btn-success' %>

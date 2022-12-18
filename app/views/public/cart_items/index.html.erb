@@ -4,7 +4,7 @@
 <h3>ショッピングカート</h3>
 </div>
 <div class="col-sm-3">
-<%= link_to "カートを空にする", items_path, method: :destroy_all, class: "btn btn-danger"%>
+<%= link_to "カートを空にする", cart_items_destroy_all_path, method: :Delete, class: "btn btn-danger"%>
 </div>
 </div>
 
@@ -24,12 +24,13 @@
     <tr>
       <th><%= cart_item.item.name %></th>
       <th><%= cart_item.item.with_tax_price%></th>
-      <th><%= form_with model: cart_item, method: :patch do |f| %>
+      <th>
+      <%= form_with model: cart_item, method: :patch do |f| %>
       <%= f.select :amount, [*1..10] %><%= f.submit "変更", class: "btn btn-success" %>
       <% end %>
-    </th>
-    <th><%= cart_item.subtotal %></th>
-    <th><%= link_to '削除する', cart_item_path(cart_item), method: :delete %></th>
+      </th>
+      <th><%= cart_item.subtotal %></th>
+      <th><%= link_to '削除する', cart_item_path(cart_item), method: :delete %></th>
     </tr>
   <% end %>
   </tbody>
