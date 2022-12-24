@@ -25,7 +25,7 @@ before_action :customer_state, only: [:create]
   # end
 protected
 # 退会しているかを判断するメソッド
-def customer_state
+  def customer_state
   ## 【処理内容1】 入力されたemailからアカウントを1件取得
   @customer = Customer.find_by(email: params[:customer][:email])
   ## アカウントを取得できなかった場合、このメソッドを終了する
@@ -34,7 +34,6 @@ def customer_state
   if @customer.valid_password?(params[:customer][:password])
     ## 【処理内容3】
   end
-
   # 【処理内容3】 「1」と「2」の処理が真(true)だった場合、そのアカウントのis_deletedカラムに格納されている値を確認し
   #     trueだった場合、退会しているのでサインアップ画面に遷移する
   #     falseだった場合、退会していないのでそのままcreateアクションを実行させる処理を実行する
@@ -43,6 +42,18 @@ def customer_state
 # is_deletedの値がfalseだった場合
 #   createアクションを実行させる
 
+  # 会員の論理削除のための記述。退会後は、同じアカウントでは利用できない。
+  def reject_customer
+    @customer = Customer.find_by(name: params[:customer][:last_name])
+    if @customer
+      if @customer.valid_password?(params[:customer][:password]) && (@customer.is_deleted == false)
+        flash[:notice] = "退会済みです。再度ご登録をしてご利用ください。"
+        redirect_to new_customer_registration
+      else
+        flash[:notice] = "項目を入力してください"
+      end
+    end
+  end
 
 end
 

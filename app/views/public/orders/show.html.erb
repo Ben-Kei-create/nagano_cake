@@ -1,32 +1,79 @@
 <div class="container">
-<div class="row">
-<div class="col mt-4 mx-auto">
-注文履歴詳細画面
-</div>
+ <div class="row">
+  <h3 class="col mt-4 bg-light">
+   注文履歴詳細（会員）
+  </h3>
 
+注文情報
 <table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>商品名</th>
-      <th>単価（税込）</th>
-      <th>数量</th>
-      <th>小計</th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @cart_items.each do |cart_item| %>
-  <% @total += cart_item.subtotal %>
-    <tr>
-      <th><%= cart_item.item.name %></th>
-      <th><%= cart_item.item.with_tax_price %></th>
-      <th><%= cart_item.amount %></th>
-    </tr>
-    <th><%= cart_item.subtotal %></th>
-    <th><%= link_to '削除する', cart_item_path(cart_item), method: :delete %></th>
-    </tr>
-  <% end %>
-  </tbody>
+ <thead>
+  <tr>
+   <td>注文日</td>
+   <td><% %></td>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <td>配送先</td>
+   <td><% %></td>
+  </tr>
+  <tr>
+   <td>支払方法</td>
+   <td><% %></td>
+  </tr>
+  <tr>
+   <td>ステータス</td>
+   <td><% %></td>
+  </tr>
+ </tbody>
 </table>
+
+請求情報
+<table class="table table-bordered">
+ <thead>
+  <tr>
+   <td>商品合計</td>
+   <td><% %></td>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <td>配送料</td>
+   <td><% %></td>
+  </tr>
+  <tr>
+   <th>ご請求額</th>
+   <td><% %></td>
+  </tr>
+ </tbody>
+</table>
+
+注文内容
+<table class="table table-bordered">
+ <thead>
+  <tr>
+   <td>商品</td>
+   <td>単価（税込）</td>
+   <td>商品</td>
+   <td>単価</td>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <td>配送先</td>
+   <td><% %></td>
+  </tr>
+  <tr>
+   <td>支払方法</td>
+   <td><% %></td>
+  </tr>
+  <tr>
+   <td>ステータス</td>
+   <td><% %></td>
+  </tr>
+ </tbody>
+</table>
+
 
 
 <table class="table table-bordered">
@@ -49,11 +96,36 @@
 </table>
 </div>
 
+注文内容
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>送料</th>
+      <th>￥<% cart_item.shopping_cost %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>商品合計</th>
+      <th><% @total += cart_item.subtotal %><%= @total %></th>
+    </tr>
+    <tr>
+      <th>請求金額</th>
+      <th><% @total += cart_item.subtotal + cart_item.shopping_cost %><%= @total %></th>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+
 支払方法
 <%= params[:payment_method] %>
 
 お届け先
-〒<%= current_customer.addresses, :id, :name) %>
+〒<%#= current_customer.addresses, :id, :name) %>
 
 登録済住所先から選択
 〒<%= current_customer.addresses %>
@@ -67,3 +139,28 @@
 <%= link_to "注文を確定する", orders_complete_path, class: 'btn btn-success' %>
 </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+  <% @cart_items.each do |cart_item| %>
+  <% @total += cart_item.subtotal %>
+    <tr>
+      <th><%= cart_item.item.name %></th>
+      <th><%= cart_item.item.with_tax_price %></th>
+      <th><%= cart_item.amount %></th>
+    </tr>
+    <th><%= cart_item.subtotal %></th>
+    <th><%= link_to '削除する', cart_item_path(cart_item), method: :delete %></th>
+    </tr>
+
+  </tbody>
+</table>

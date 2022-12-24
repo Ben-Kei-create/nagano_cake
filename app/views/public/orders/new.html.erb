@@ -21,7 +21,8 @@
   <tr>
    <th><%= f.radio_button :select_address, 0 %></th>
    <th>ご自身の住所</th>
-   <th>〒<%= @customer.postal_code + @customer.address + @customer.last_name + @customer.first_name %><%#= f.label :address_id, options_from_collection_for_select(current_customer.addresses, :id, :name) %></th><p>
+   <th>〒<%= @customer.postal_code + @customer.address + @customer.first_name + @customer.last_name %><%#= f.label :address_id, options_from_collection_for_select(current_customer.addresses, :id, :name) %></th><p>
+
   </tr>
  </thead>
  <tbody>
@@ -32,7 +33,7 @@
   </tr>
   <tr>
    <th><%= f.radio_button :select_address, 2 %></th>
-   <th> 新しいお届け先</th>
+   <th>新しいお届け先</th>
    <th></th>
   </tr>
   <tr>

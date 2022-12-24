@@ -1,84 +1,43 @@
 <div class="container">
 <h4 class="row mt-4 bg-light">
-注文履歴詳細
+注文履歴詳細（管理者）
 </h4>
 <%= form_with model: @customer do |c| %>
 <table class="table table-borderless">
   <thead>
     <tr>
-      <th>
-      <strong>購入者</strong>
-      </th>
-      <th>
-      <%= link_to c.name, admin_customer(c.id) %>
-      </th>
+      <th><strong>購入者</strong></th>
+      <th><%= link_to c.name, admin_customer(c.id) %></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>
-      <strong>注文日</strong>
-      </td>
-      <td>
-      <%= c.created_at %>
-      </td>
+      <th><strong>注文日</strong></th>
+      <td><%= c.created_at %></td>
     </tr>
     <tr>
-      <td>
-      <strong>配送先</strong>
-      </td>
-      <td>
-      <%= c.address %>
-　　　</td>
+      <th><strong>配送先</strong></th>
+      <td><%= c.address %></td>
     </tr>
     <tr>
-      <td>
-      <strong>支払方法</strong>
-      </td>
-      <td>
-      <%= c.payment_method %>
-      </td>
+      <th><strong>支払方法</strong></th>
+      <td><%= c.payment_method %></td>
     </tr>
     <tr>
+      <th><strong>注文ステータス</strong></th>
       <td>
-      <strong>注文ステータス</strong>
-      </td>
-      <td>
-      <%= c.is_active %>
-      </td>
-    </tr>
-
-      <td>会員ステータス</td>
-      <td><%= c.is_deleted %>
-      <% if c.is_deleted=="false" %>
-      <p class="text-secondary"><strong>退会</strong></p>
-      <% else %>
-      <p class="text-success"><strong>有効</strong></p>
-      <% end %>
-      </td>
-      <% end %>
+      <%= form_with model: cart_item, method: :patch do |f| %>
+      <%= f.select :is_active, [['入金確認',1], ['入金確認',2], ['',3], ['発送済み',4], ['発送準備中',5]] %>
+      <%= f.submit "更新", class: "btn btn-success" %>
+      <% end %></td>
+      <%= c. %>
     </tr>
   </tbody>
 </table>
 
-<div class="container">
-<div class="row mx-4">
-<div class="col">
-<%= link_to customers_information_path, class: 'nav-link' do %>
-<button type="button" class="btn btn-success">編集する</button>
-<% end %>
-</div>
-<div class="col">
-<%= link_to customers_information_path, class: 'nav-link' do %>
-<button type="button" class="btn btn-info">注文履歴一覧を見る</button>
-<% end %>
-</div>
-</div>
-</div>
-
-
-<table class="table">
-  <thead class="thead-light">
+<div class="row">
+<table class="table table-bordered">
+  <thead>
     <tr>
       <th>商品名</th>
       <th>単価（税込）</th>
@@ -87,46 +46,60 @@
       <th>製作ステータス</th>
     </tr>
   </thead>
-<% @items.each do |t| %>
   <tbody>
+  <% @cart_items.each do |cart_item| %>
+  <% @total += cart_item.subtotal %>
     <tr>
-      <td><% t.name %></td>
-      <td><% t.shopping_cost %></td>
-      <td><% t.amount %></td>
-      <td><% t.total_price %></td>
-      <td><% t.is_active %></td>
+      <th><%= cart_item.item.name %></th>
+      <th><%= cart_item.item.with_tax_price %></th>
+      <th><%= cart_item.amount %></th>
+      <th><%= cart_item.subtotal %></th>
+      <th>
+      <%= form_with model: cart_item, method: :patch do |f| %>
+      <%= f.select :is_active, [['入金確認',1], ['入金確認',2], ['',3], ['発送済み',4], ['発送準備中',5]] %>
+      <%= f.submit "更新", class: "btn btn-success" %>
+      <% end %>
+      </th>
+      <th>
+      <%= form_with model: cart_item, method: :patch do |f| %>
+      <%= f.select :is_active, [['製作中',1], ['着手不可',2] %>
+      <%= f.submit "更新", class: "btn btn-success" %>
+      <% end %>
+      </th>
     </tr>
   </tbody>
+ <% end %>
 </table>
 
-<table class="table table-borderless">
-  <thead>
-    <tr>
-      <th>
-      <strong>商品合計</strong>
-      </th>
-       <th>
-      <strong>6490円</strong>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>
-      <strong>送料</strong>
-      </th>
-       <th>
-      <strong>800円</strong>
-      </th>
-    </tr>
-    <tr>
-      <th>
-      <strong>請求金額合計</strong>
-      </th>
-      <th>
-      <strong>7290円</strong>
-      </th>
-    </tr>
-  </tbody>
+
+<table class="table table-bordered">
+ <thead>
+  <tr>
+    <th><strong>商品合計</strong></th>
+    <th><% @total += cart_item.subtotal %><%= @total %>円</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <th><strong>送料</strong></th>
+   <th><% cart_item.shopping_cost %>円</th>
+  </tr>
+  <tr>
+   <th><strong>請求金額合計</strong></th>
+   <th><% @total += cart_item.subtotal + cart_item.shopping_cost %><%= @total %>円</th>
+  </tr>
+ </tbody>
 </table>
-<% end %>
+</div>
+</div>
+
+      <%#= f.radio_button :is_active, 'waiting_for_payment' %>
+      <%#= f.label :is_active_waiting_for_payment, '入金待ち' %>
+      <%#= f.radio_button :is_active, 'payment_confirmation' %>
+      <%#= f.label :is_active_payment_confirmation, '入金確認' %>
+      <%#= f.radio_button :is_active, 'in_production' %>
+      <%#= f.label :is_active_in_production, '製作中' %>
+      <%#= f.radio_button :is_active, 'preparing_to_ship' %>
+      <%#= f.label :is_active_preparing_to_ship, '発送準備中' %>
+      <%#= f.radio_button :is_active, 'sent' %>
+      <%#= f.label :is_active_sent, '発送済み' %>

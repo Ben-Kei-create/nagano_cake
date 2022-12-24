@@ -8,8 +8,10 @@ scope module: :public do
  resources :orders, only: [:new, :create, :index, :show]
  resources :addresses, only: [:new, :index, :show, :create, :update, :destroy, :edit]
  resource :customers, only: [:edit, :update, :show]
+ get 'orders/confirm' => 'orders#confirm'
  get 'orders/complete' => 'orders#complete'
  get 'customers/unsubscribe' => 'customers#unsubscribe'
+ patch '/customers/:id/withdrawal' => 'customers#withdrawal', as: 'withdrawal'
  get 'customers/information' => 'customers#show'
  post 'orders/confirm' => 'orders#confirm'
  post 'customers/information' => 'customers#new'

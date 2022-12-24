@@ -9,19 +9,14 @@
       <th scope="col">購入日時</th>
       <th scope="col">購入者</th>
       <th scope="col">注文個数</th>
-      <!--<th scope="col">注文ステータス</th>-->
     </tr>
   </thead>
   <tbody>
   <% @order_details.each do |o| %>
     <tr>
-     <td><%= link_to o.created_at, admin_order_path%></td>
+     <td><%= link_to o.created_at, admin_order_path %></td>
      <td><%= o.customer.name %></td>
      <td><%= o.amount %></td>
-     <!--<td>%= if o.making_status=="false" %>-->
-     <!--<p class="text-secondary"><strong>販売停止中</strong></p>-->
-     <!--% else %>-->
-     <!--<p class="text-success"><strong>販売中</strong></p>-->
     </tr>
 </table>
 </div>
