@@ -1,15 +1,25 @@
 Rails.application.routes.draw do
+
+devise_for :customers,skip: [:passwords], controllers: {
+  registrations: "public/registrations",
+  sessions: 'public/sessions'
+}
+
+devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+  sessions: "admin/sessions"
+}
+
 scope module: :public do
  get'homes/about' => 'homes#about', as: 'about'
  root to:"homes#top"
  resources :items, only: [:index, :show]
  delete '/cart_items/destroy_all' => 'cart_items#destroy_all', as: 'cart_items_destroy_all'
  resources :cart_items, only: [:index, :destroy, :create, :update]
+ get 'orders/complete' => 'orders#complete'
  resources :orders, only: [:new, :create, :index, :show]
  resources :addresses, only: [:new, :index, :show, :create, :update, :destroy, :edit]
  resource :customers, only: [:edit, :update, :show]
  get 'orders/confirm' => 'orders#confirm'
- get 'orders/complete' => 'orders#complete'
  get 'customers/unsubscribe' => 'customers#unsubscribe'
  patch '/customers/:id/withdrawal' => 'customers#withdrawal', as: 'withdrawal'
  get 'customers/information' => 'customers#show'
@@ -27,12 +37,4 @@ scope module: :public do
  patch 'items/:id' => 'items#update'
  end
 
-devise_for :customers,skip: [:passwords], controllers: {
-  registrations: "public/registrations",
-  sessions: 'public/sessions'
-}
-
-devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
-  sessions: "admin/sessions"
-}
 end

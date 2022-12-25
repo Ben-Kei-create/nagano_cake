@@ -1,7 +1,7 @@
 <div class="container">
  <div class="row">
   <h3 class="col mt-4 mx-auto bg-light">
-   注文履歴画面
+   注文履歴一覧
   </h3>
  </div>
  <div class="row">
@@ -22,17 +22,21 @@
     <tr>
      <th><%= order.created_at %></th>
      <th>〒<%= order.postal_code + "  " + order.address + "  " + order.name %></th>
-     <th><%= cart_item.item.name %></th>
-     <th><%= @total + @shopping_cost %></th>
+     <th>
+     <% order.order_details.each do |order_detail| %>
+     <%= order_detail.item.name %>
+     <% end %>
+     </th>
+     <th><%= order.total_price %></th>
      <th>販売ステータス</th>
      <th scope="col">
-      <% if @order.is_active==false %>
+      <% if order.is_active == false %>
        入金確認
       <% else %>
        発送済み
       <% end %>
      </th>
-     <th><%= link_to order_path, class: "btn btn-primary" %></th>
+     <th><%= link_to "表示する", order_path(order), class: "btn btn-primary" %></th>
     </tr>
    </tbody>
    <% end %>
