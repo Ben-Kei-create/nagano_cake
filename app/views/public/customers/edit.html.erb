@@ -1,85 +1,43 @@
 <div class="container">
-<h4 class="row mt-4 bg-light">
-<%= form_with model: @customer, url: customers_path, method: :patch do |f| %>
-<%= @customer.first_name %><%= @customer.last_name %>さんの会員情報編集
-</h4>
-
-<div class="row mt-4">
-<table class="table table-borderless">
-    <tr>
-      <td>
-      氏名
-      </td>
-      <td>
-      <%= f.text_field :first_name, autocomplete: "first_name" %>
-      </td>
-      <td>
-      <%= f.text_field :last_name, autocomplete: "last_name" %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-      フリガナ
-      </td>
-      <td>
-      <%= f.text_field :first_name_kana, autocomplete: "first_name_kana" %>
-      </td>
-      <td>
-      <%= f.text_field :last_name_kana, autocomplete: "last_name_kana" %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-      郵便番号
-      </td>
-      <td>
-      <%= f.text_field :postal_code, autocomplete: "postal_code" %>
-      </td>
-      <td colspan="1">
-      </td>
-    </tr>
-    <tr>
-      <td>
-      住所
-      </td>
-      <td>
-      <%= f.text_area :address, size: "20", autocomplete: "address" %>
-      </td>
-      <td colspan="1">
-      </td>
-    </tr>
-    <tr>
-      <td>
-      電話番号
-      </td>
-      <td>
-      <%= f.telephone_field :telephone_number %>
-      </td>
-      <td colspan="1">
-      </td>
-    </tr>
-    <tr>
-      <td>
-      メールアドレス
-      </td>
-      <td>
-      <%= f.text_field :postal_code, placeholder: "0000000", autocomplete: "postal_code" %>
-      </td>
-      <td colspan="1">
-      </td>
-    </tr>
-    </table>
-    </div>
-<div class="row">
-<div class="col-sm-2 mt-2">
-<%= f.submit '編集内容を保存', class: "btn btn-success"%>
-<% end %>
-</div>
-</div>
-
-<div class="row">
-<div class="col-sm-2 mt-2">
-<%= link_to '退会する', customers_unsubscribe_path, class: "btn btn-danger btn-block"%>
-</div>
-</div>
+  <h4 class="row mt-4 bg-light">
+    <%= @customer.first_name %><%= @customer.last_name %>さんの会員情報編集
+  </h4>
+  <div class="row mt-4">
+    <%= form_with model: @customer, url: customer_path(current_customer), method: :patch do |f| %>
+      <table class="table table-borderless">
+        <tr>
+          <td>氏名</td>
+          <td><%= f.text_field :first_name, autocomplete: "first_name" %><%= "  " %><%= f.text_field :last_name, autocomplete: "last_name" %></td>
+        </tr>
+        <tr>
+          <td>フリガナ</td>
+          <td><%= f.text_field :first_name_kana, autocomplete: "first_name_kana" %><%= "  " %><%= f.text_field :last_name_kana, autocomplete: "last_name_kana" %></td>
+        </tr>
+        <tr>
+          <td>郵便番号</td>
+          <td><%= f.text_field :postal_code, size: "30*30", autocomplete: "postal_code" %></td>
+          <td colspan="1"></td>
+        </tr>
+        <tr>
+          <td>住所</td>
+          <td><%= f.text_field :address, size: "30*30", autocomplete: "address" %></td>
+          <td colspan="1"></td>
+        </tr>
+        <tr>
+          <td>電話番号</td>
+          <td><%= f.telephone_field :telephone_number, size: "30*30", autocomplete: "telephone_number" %></td>
+          <td colspan="1"></td>
+        </tr>
+        <tr>
+          <td>メールアドレス</td>
+          <td><%= f.text_field :email, size: "30*30", placeholder: "0000000", autocomplete: "email" %></td>
+          <td colspan="1"></td>
+        </tr>
+      </table>
+      <%= f.submit '編集内容を保存', class: "btn btn-success"%>
+      <% end %>
+  </div>
+  <div class="row">
+      <%= link_to '退会する', customers_unsubscribe_path, class: "btn btn-danger mt-2"%>
+  </div>
 </div>

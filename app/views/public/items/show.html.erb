@@ -1,18 +1,30 @@
 <%= flash[:notice] %>
 <div class="container">
-<div class="row mt-4">
-<%= form_with model: @cart_item, url: cart_items_path, method: :post do |t| %>
-<div class="col-lg-4 mt-4">
-<%= image_tag @item.get_profile_image(100,100), width: '80%', height: '80%' %>
-</div>
-<div class="col-lg-4 mt-4">
-<p><h1><%= @item.name %></h1></p>
-<p><h3><%= @item.introduction %></h3></p>
-<p><h3>￥<%= @item.with_tax_price %></h3><h5>（税込）</h5></p>
-<%= t.hidden_field :item_id, :value => @item.id %>
-<%= t.select :amount, *[1..10] %>
-<%= t.submit "カートに入れる", class: "btn btn-success" %>
-</div>
-<% end %>
-</div>
+  <div class="row mt-4">
+    <%= form_with model: @cart_item, url: cart_items_path, method: :post do |t| %>
+
+      <div class="col-5">
+        <%= image_tag @item.get_profile_image(100,100), width: '80%', height: '80%' %>
+      </div>
+
+      <div class="col-6">
+        <table class="table table-borderless">
+          <thead>
+            <tr>
+              <th><h3><strong><%= @item.name %></strong></h3></p></th>
+            </tr>
+            <tr>
+              <td><h4><%= @item.introduction %></h4></td>
+            </tr>
+            <tr>
+              <td><h3>￥<%= @item.with_tax_price %></h3>（税込）</td>
+            </tr>
+          </thead>
+        </table>
+      </div>
+   s</div>
+   <%= t.hidden_field :item_id, :value => @item.id %>
+   <%= t.select :amount, *[1..10] %>
+   <%= t.submit "カートに入れる", class: "btn btn-success" %>
+   <% end %>
 </div>

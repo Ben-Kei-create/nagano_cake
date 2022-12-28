@@ -18,9 +18,9 @@ scope module: :public do
  get 'orders/complete' => 'orders#complete'
  resources :orders, only: [:new, :create, :index, :show]
  resources :addresses, only: [:new, :index, :show, :create, :update, :destroy, :edit]
- resource :customers, only: [:edit, :update, :show]
- get 'orders/confirm' => 'orders#confirm'
  get 'customers/unsubscribe' => 'customers#unsubscribe'
+ resources :customers, only: [:edit, :update, :show, :destroy]
+ get 'orders/confirm' => 'orders#confirm'
  patch '/customers/:id/withdrawal' => 'customers#withdrawal', as: 'withdrawal'
  get 'customers/information' => 'customers#show'
  post 'orders/confirm' => 'orders#confirm'
@@ -32,9 +32,10 @@ scope module: :public do
  resources :items, only: [:index, :new, :create, :show, :edit, :update]
  resources :customers, only: [:index, :show, :edit]
  resources :genres, only: [:index, :create, :edit, :update]
- resources :orders, only: [:show]
+ resources :orders, only: [:show, :update]
  post 'items' => 'items#create'
  patch 'items/:id' => 'items#update'
+ patch 'orders/:id' => 'orders#update'
  end
 
 end

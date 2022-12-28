@@ -25,8 +25,8 @@ class Public::OrdersController < ApplicationController
    @order_detail.price = cart_item.item.price
    @order_detail.amount = cart_item.amount
    @order_detail.save
-   @cart_items.destroy_all
   end
+   @cart_items.destroy_all
    flash[:notice] = "Your purchase was successful."
    redirect_to orders_complete_path
   else
@@ -64,6 +64,7 @@ class Public::OrdersController < ApplicationController
   end
  end
 
+ private
  def order_params
   params.require(:order).permit(:payment_method, :postal_code, :address, :name, :total_price, :is_active)
  end

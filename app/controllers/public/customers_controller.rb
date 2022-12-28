@@ -19,12 +19,14 @@ class Public::CustomersController < ApplicationController
 
  def edit
   @customer = Customer.find(current_customer.id)
-  unless @customer == current_customer
-  end end
+ end
 
   def update
    current_customer.update(customer_params)
-   redirect_to customers_path
+   redirect_to customer_path(current_customer)
+  end
+
+  def unsubscribe
   end
 
  private
