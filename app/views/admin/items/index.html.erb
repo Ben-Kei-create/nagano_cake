@@ -1,61 +1,57 @@
 <div class="container">
-<div class="row">
-<h4 class="col-md-8 offset-md-1 mt-4 bg-light">
-<strong>商品一覧</strong></h4>
+  <div class="row">
+    <h4 class="col-md-8 offset-md-1 mt-4 bg-light">
+      <strong>商品一覧</strong>
+    </h4>
+    <div class="col-md-3 mt-4">
+      <%= link_to new_admin_item_path, class: 'nav-link' do %>
+        <i class="fas fa-plus"></i>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>商品ID</th>
+          <th>商品名</th>
+          <th>税抜価格</th>
+          <th>ジャンル</th>
+          <th>ステータス</th>
+        </tr>
+      </thead>
+      <% @items.each do |t| %>
+      <tbody>
+        <tr>
 
-<div class="col-md-3 mt-4">
-<%= link_to new_admin_item_path, class: 'nav-link' do %>
-<i class="fas fa-plus"></i>
-<% end %>
-</div>
+        <td>
+        <%= t.id %>
+        </td>
 
-</div>
+        <td>
+    　　<%= link_to t.name, admin_item_path(t) %>
+        </td>
 
-<div class="row">
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col" colspan="1">商品ID</th>
-      <th scope="col">商品名</th>
-      <th scope="col">税抜価格</th>
-      <th scope="col">ジャンル</th>
-      <th scope="col">ステータス</th>
-    </tr>
-  </thead>
-</div>
+        <td>
+        <%= t.price %>
+        </td>
 
-  <tbody>
-  <% @items.each do |t| %>
-    <tr>
+        <td>
+        <%= t.genre.name %>
+        </td>
+        <!--アソシエーション（？？）-->
 
-    <td>
-    <%= t.id %>
-    </td>
+        <td>
+        <% if t.is_active=="false" %>
+        <p class="text-secondary"><strong>販売停止中</strong></p>
+        <% else %>
+        <p class="text-success"><strong>販売中</strong></p>
+        <% end %>
+        </td>
+        <% end %>
+        </table>
+    </div>
 
-    <td>
-　　<%= link_to t.name, admin_item_path(t) %>
-    </td>
-
-    <td>
-    <%= t.price %>
-    </td>
-
-    <td>
-    <%= t.genre.name %>
-    </td>
-    <!--アソシエーション（？？）-->
-
-    <td>
-    <% if t.is_active=="false" %>
-    <p class="text-secondary"><strong>販売停止中</strong></p>
-    <% else %>
-    <p class="text-success"><strong>販売中</strong></p>
-    <% end %>
-    </td>
-    <% end %>
-    </table>
-</div>
-
-<div class="row">
-<%= paginate @items %>
-</div>
+    <div class="row">
+    <%= paginate @items %>
+    </div>
