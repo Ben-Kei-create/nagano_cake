@@ -10,11 +10,12 @@ class Public::CartItemsController < ApplicationController
  end
 
  def create
-  @cart_item = CartItem.new(cart_item_params)
-		@cart_item.customer_id = current_customer.id
+   @cart_item = CartItem.new(cart_item_params)
+		 @cart_item.customer_id = current_customer.id
 		if current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id]).present?
-			#current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id]).number += params[:cart_item][:number].to_i
-			current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id]).save
+		 @already = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
+	  @already.amount += params[:cart_item][:amount].to_i
+			@already.save
 			redirect_to cart_items_path
 		elsif @cart_item.save
 			redirect_to cart_items_path

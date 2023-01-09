@@ -7,12 +7,10 @@
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-<%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
-  <body>
-
+<body>
   <body class="d-flex flex-column vh-100">
     <header class="shadow-sm">
       <nav class="navbar navbar-expand-lg navbar-light  bg-dark">
@@ -25,7 +23,6 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
-
 </div>
 
 
@@ -88,10 +85,7 @@
 <% end %>
 </li>
 
-
-
 <% else %>
-
 <li>
 <%= link_to about_path, class: 'nav-link text-white' do %>
 <i class="fas fa-link"></i>About
@@ -124,7 +118,6 @@
       </nav>
     </header>
     <main class="mb-auto">
-
 <div class="fixed-bottom">
 <div class="row">
 <div class="mx-auto">
@@ -132,7 +125,6 @@ CopyRight Infratop.inc
 </div>
 </div>
 </div>
-
     <%= yield %>
   </body>
 </html>
