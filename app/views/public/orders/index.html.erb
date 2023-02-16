@@ -20,14 +20,20 @@
        <tbody>
          <% @orders.each do |order| %>
          <tr>
-           <th><%= order.created_at %></th>
-           <th>〒<%= order.postal_code + "  " + order.address + "  " + order.name %></th>
            <th>
-           <% order.order_details.each do |order_detail| %>
-           <%= order_detail.item.name %>
-           <% end %>
+             <%= order.created_at %>
            </th>
-           <th><%= order.total_price %></th>
+           <th>
+             〒<%= order.postal_code + "  " + order.address + "  " + order.name %>
+           </th>
+           <th>
+             <% order.order_details.each do |order_detail| %>
+             <%= order_detail.item.name %>
+             <% end %>
+           </th>
+           <th>
+           <%= order.total_price %>
+           </th>
            <th>販売ステータス</th>
            <th>
            <% if order.is_active == false %>

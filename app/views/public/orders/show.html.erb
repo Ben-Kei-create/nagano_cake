@@ -55,6 +55,7 @@
         請求情報
       </strong>
         <% @orders.each do |order| %>
+        <% @total += order.total_tax %>
       <table class="table table-bordered">
         <thead>
           <tr>
@@ -62,7 +63,7 @@
               商品合計
             </td>
             <td>
-              <%= order.item.with_tax_price * order.amount %>
+          <td><%= @total %></td>
             </td>
           </tr>
         </thead>
