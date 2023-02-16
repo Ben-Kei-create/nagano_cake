@@ -9,7 +9,6 @@ class Public::OrdersController < ApplicationController
   @order = Order.find(params[:id])
   @orders = @order.order_details
   @shopping_cost = 800
-  @total = 0
  end
 
  def create
